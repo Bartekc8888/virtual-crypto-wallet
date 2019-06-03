@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" method="post" action="/processLogin">
+    <form class="form-signin" th:action="@{/processLogin}" method="post">
         <h2 class="form-signin-heading" th:text="#{form.login.greeting}">Please sign in</h2>
         <p>
             <label for="username" class="sr-only" th:text="#{user.username}">Username</label>
@@ -23,8 +23,15 @@
             <input type="password" id="password" name="password" class="form-control" th:placeholder="#{user.password}" required>
         </p>
 
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{form.login.login}">Sign in</button>
+        <a class="btn btn-lg btn-primary btn-block" th:href="@{/register}" th:text="#{form.register.submit}"></a>
+
+        <div th:if="${param.error}" class="alert alert-error">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success">
+            You have been logged out.
+        </div>
     </form>
 </div>
 

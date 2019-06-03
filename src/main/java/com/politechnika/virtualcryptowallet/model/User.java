@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "USERS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +19,12 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
     private String password;
-    private String firstName;
-    private UserRole userRole;
 
-    //standard getters and setters
+    @Column(name = "firstName")
+    private String firstName;
+
+    private boolean enabled;
+
+    @Column(name = "userRole")
+    private UserRole userRole;
 }

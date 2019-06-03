@@ -27,10 +27,17 @@ public class SecurityUserDetailsService implements UserDetailsService {
     }
 
     public User registerUser(RegistrationUserDto userDto) {
+        User existingUser = userRepository.findByUsername(userDto.getUsername());
+        if (existingUser != null) {
+            throw new RuntimeException("User already exists");
+        }
+
         User user = new User();
+
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
         user.setUserRole(UserRole.USER);
+
         return userRepository.save(user);
     }
 }

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <body>
 <h1 th:text="#{form.register.title}">form</h1>
-<form action="/user/register" th:object="${user}" method="POST" enctype="utf8">
+<form th:action="@{/user/register}" th:object="${user}" th:method="POST" th:enctype="utf8">
     <div>
         <label th:text="#{user.firstName}">first name</label>
         <input th:field="*{firstName}"/>
