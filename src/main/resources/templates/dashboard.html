@@ -5,7 +5,10 @@
 </head>
 <body>
 <h1>Hello world!</h1>
-
+<div>
+    <label th:text="#{cryptocurrency.current.price}">first name</label>
+    <label th:text="*{bitcoinPrice}"></label>
+</div>
 <form name="logoutForm" th:action="@{/logout}" method="post">
     <button type="submit" th:text="#{form.logout.submit}">submit</button>
 </form>
