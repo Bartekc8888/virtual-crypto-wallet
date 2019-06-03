@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title th:text="#{form.login.page.title}">Please sign in</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" method="post" action="/processLogin">
+        <h2 class="form-signin-heading" th:text="#{form.login.greeting}">Please sign in</h2>
+        <p>
+            <label for="username" class="sr-only" th:text="#{user.username}">Username</label>
+            <input type="text" id="username" name="username" class="form-control" th:placeholder="#{user.username}" required autofocus>
+        </p>
+        <p>
+            <label for="password" class="sr-only" th:text="#{user.password}">Password</label>
+            <input type="password" id="password" name="password" class="form-control" th:placeholder="#{user.password}" required>
+        </p>
+
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{form.login.login}">Sign in</button>
+    </form>
+</div>
+
+<span th:with="url=${#httpServletRequest.requestURI}">
+    <a th:href="'?lang=pl_PL'" th:text="#{page.lang.polish}"></a>
+    <a th:href="'?lang=en_US'" th:text="#{page.lang.english}"></a>
+</span>
+</body>
+</html>
