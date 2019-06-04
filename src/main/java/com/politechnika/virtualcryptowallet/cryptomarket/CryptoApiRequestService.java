@@ -1,9 +1,6 @@
 package com.politechnika.virtualcryptowallet.cryptomarket;
 
-import javax.annotation.PostConstruct;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.politechnika.virtualcryptowallet.cryptomarket.dtos.CryptocurrencyListingResponseDto;
 import lombok.extern.slf4j.Slf4j;
