@@ -1,33 +1,42 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
 <body>
-<h1 th:text="#{form.register.title}">form</h1>
-<form th:action="@{/user/register}" th:object="${user}" th:method="POST" th:enctype="utf8">
-    <div>
-        <label th:text="#{user.firstName}">first name</label>
-        <input th:field="*{firstName}"/>
-        <p th:each="error: ${#fields.errors('firstName')}"
-           th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{user.username}">username</label>
-        <input th:field="*{username}"/>
-        <p th:each="error: ${#fields.errors('username')}"
-           th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{user.password}">password</label>
-        <input type="password" th:field="*{password}"/>
-        <p th:each="error : ${#fields.errors('password')}"
-           th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{user.confirmPass}">confirm password</label>
-        <input type="password" th:field="*{matchingPassword}"/>
-    </div>
-    <button type="submit" th:text="#{form.register.submit}">submit</button>
-</form>
+<div class="container">
+    <h1 th:text="#{form.register.title}">form</h1>
+    <form class="form-signin" th:action="@{/user/register}" th:object="${user}" th:method="POST" th:enctype="utf8">
+        <p>
+            <label for="firstName" class="sr-only" th:text="#{user.firstName}">first name</label>
+            <input id="firstName" name="firstName" class="form-control" th:field="*{firstName}" th:placeholder="#{user.firstName}"/>
+            <p th:each="error: ${#fields.errors('firstName')}"
+               th:text="${error}">Validation error</p>
+        </p>
+        <p>
+            <label for="username" class="sr-only" th:text="#{user.username}">username</label>
+            <input id="username" name="username" class="form-control" th:field="*{username}" th:placeholder="#{user.username}"/>
+            <p th:each="error: ${#fields.errors('username')}"
+               th:text="${error}">Validation error</p>
+        </p>
+        <p>
+            <label for="password" class="sr-only" th:text="#{user.password}">password</label>
+            <input id="password" name="password" class="form-control" type="password" th:field="*{password}" th:placeholder="#{user.password}"/>
+            <p th:each="error : ${#fields.errors('password')}"
+               th:text="${error}">Validation error</p>
+        </p>
+        <p>
+            <label for="passwordMatcher" class="sr-only" th:text="#{user.confirmPass}">confirm password</label>
+            <input id="passwordMatcher" name="passwordMatcher" class="form-control" type="password" th:field="*{matchingPassword}" th:placeholder="#{user.confirmPass}"/>
+        </p>
+        <p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{form.register.submit}">submit</button>
+        </p>
+        <p>
+            <a class="btn btn-lg btn-primary btn-block" th:href="@{/login.html}" th:text="#{form.loginLink}">login</a>
+        </p>
+    </form>
+</div>
 
-<a th:href="@{/login.html}" th:text="#{form.loginLink}">login</a>
 </body>
 </html>

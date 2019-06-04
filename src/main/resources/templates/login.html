@@ -12,6 +12,10 @@
 </head>
 <body>
 <div class="container">
+    <div class="btn-group btn-group-justified" th:with="url=${#httpServletRequest.requestURI}">
+        <a class="btn btn-sm btn-info" th:href="'?lang=pl_PL'" th:text="#{page.lang.polish}"></a>
+        <a class="btn btn-sm btn-info" th:href="'?lang=en_US'" th:text="#{page.lang.english}"></a>
+    </div>
     <form class="form-signin" th:action="@{/processLogin}" method="post">
         <h2 class="form-signin-heading" th:text="#{form.login.greeting}">Please sign in</h2>
         <p>
@@ -35,9 +39,5 @@
     </form>
 </div>
 
-<span th:with="url=${#httpServletRequest.requestURI}">
-    <a th:href="'?lang=pl_PL'" th:text="#{page.lang.polish}"></a>
-    <a th:href="'?lang=en_US'" th:text="#{page.lang.english}"></a>
-</span>
 </body>
 </html>
