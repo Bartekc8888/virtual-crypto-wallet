@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS USER_ROLES
   username  varchar(35) NOT NULL,
   role varchar(35) NOT NULL,
   UNIQUE (username, role),
-  FOREIGN KEY (username) REFERENCES AUTH_USERS
+  FOREIGN KEY (username) REFERENCES AUTH_USERS (username)
 );
 
 INSERT INTO AUTH_USERS (username, password, enabled)

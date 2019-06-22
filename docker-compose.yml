@@ -28,6 +28,6 @@ services:
         image: portainer/portainer:1.20.2
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - /nosql/portainer-data:/data
+            - /zzpj/portainer-data:/data
         ports:
             - 8090:9000
