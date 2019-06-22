@@ -21,7 +21,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @Configuration
 @AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private SecurityUserDetailsService userDetailsService;
     private DataSource dataSource;
 
     @Override
@@ -51,12 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        PasswordEncoder encoder = encoder();
-
         auth.jdbcAuthentication().dataSource(dataSource)
-            .withUser("user").password(encoder.encode("password")).roles(UserRole.USER.toString())
-            .and()
-            .withUser("admin").password(encoder.encode("admin")).roles(UserRole.ADMIN.toString());
+            .usersByUsernameQuery("SELECT username, password, enabled from AUTH_USERS where username = ?")
+            .authoritiesByUsernameQuery("SELECT username, role from USER_ROLES where username = ?");
     }
 
     @Bean

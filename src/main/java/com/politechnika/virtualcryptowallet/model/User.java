@@ -20,9 +20,6 @@ public class User {
     private String username;
     private String password;
 
-    @Column(name = "firstName")
-    private String firstName;
-
     private boolean enabled;
 
     @Column(name = "userRole")
