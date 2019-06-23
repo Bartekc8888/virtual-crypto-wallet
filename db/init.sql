@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS AUTH_USERS
 (
   id SERIAL PRIMARY KEY,
   username varchar(35) UNIQUE NOT NULL,
-  password varchar(65) NOT NULL,
+  password varchar(128) NOT NULL,
   enabled boolean
 );
 

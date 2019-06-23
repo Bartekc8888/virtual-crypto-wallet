@@ -1,6 +1,6 @@
 package com.politechnika.virtualcryptowallet.dto;
 
-import com.politechnika.virtualcryptowallet.model.UserRole;
+import com.politechnika.virtualcryptowallet.model.UserRoleType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +15,5 @@ public class UserDto {
     private String username;
     private String password;
     private String firstName;
-    private UserRole userRole;
+    private UserRoleType userRoleType;
 }

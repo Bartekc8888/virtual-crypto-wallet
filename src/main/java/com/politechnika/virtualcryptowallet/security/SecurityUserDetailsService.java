@@ -3,17 +3,24 @@ package com.politechnika.virtualcryptowallet.security;
 import com.politechnika.virtualcryptowallet.dto.RegistrationUserDto;
 import com.politechnika.virtualcryptowallet.model.User;
 import com.politechnika.virtualcryptowallet.model.UserRole;
+import com.politechnika.virtualcryptowallet.model.UserRoleType;
 import com.politechnika.virtualcryptowallet.repository.UserRepository;
+import com.politechnika.virtualcryptowallet.repository.UserRoleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class SecurityUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
+    private UserRoleRepository userRoleRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
@@ -33,11 +40,16 @@ public class SecurityUserDetailsService implements UserDetailsService {
         }
 
         User user = new User();
-
         user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
-        user.setUserRole(UserRole.USER);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setEnabled(true);
+        User savedUser = userRepository.save(user);
 
-        return userRepository.save(user);
+        UserRole userRole = new UserRole();
+        userRole.setUsername(userDto.getUsername());
+        userRole.setUserRoleType(UserRoleType.USER);
+        userRoleRepository.save(userRole);
+
+        return savedUser;
     }
 }

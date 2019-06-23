@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.politechnika.virtualcryptowallet.model.User;
-import com.politechnika.virtualcryptowallet.model.UserRole;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @AllArgsConstructor
