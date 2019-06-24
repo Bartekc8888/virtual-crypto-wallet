@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CurrencyPriceStatisticsDto implements Serializable {
-    private Long price;
+    private Double price;
     private Long volume_24h;
     private Double percent_change_1h;
     private Double percent_change_24h;

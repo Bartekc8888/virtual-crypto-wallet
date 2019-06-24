@@ -32,17 +32,65 @@ public class CryptoApiRequestService {
         restTemplate = restTemplateBuilder.build();
     }
 
-    @Cacheable(CacheConfig.CACHE_NAME)
+    @Cacheable(CacheConfig.BITCOIN_CACHE)
     public CryptocurrencyListingResponseDto getCurrentBitcoinValue() {
-        String url = apiUrl + "/v1/cryptocurrency/listings/latest";
+        return getValue(1);
+    }
 
+    @Cacheable(CacheConfig.ETHERUM_CACHE)
+    public CryptocurrencyListingResponseDto getCurrentEtherumValue() {
+        return getValue(2);
+    }
+
+    @Cacheable(CacheConfig.XRP_CACHE)
+    public CryptocurrencyListingResponseDto getCurrentXRPValue() {
+        return getValue(3);
+    }
+
+    @Cacheable(CacheConfig.LITECOIN_CACHE)
+    public CryptocurrencyListingResponseDto getCurrentLitecoinValue() {
+        return getValue(4);
+    }
+
+    @Cacheable(CacheConfig.BITCOINCASH_CACHE)
+    public CryptocurrencyListingResponseDto getCurrentBitcoinCashValue() {
+        return getValue(5);
+    }
+
+    @Cacheable(CacheConfig.EOS_CACHE)
+    public CryptocurrencyListingResponseDto getCurrentEOSValue() {
+        return getValue(6);
+    }
+
+    @Cacheable(CacheConfig.BINANCECOIN_CACHE)
+    public CryptocurrencyListingResponseDto getCurrentBinanceCoinValue() {
+        return getValue(7);
+    }
+
+    @Cacheable(CacheConfig.BITCOINSV_CACHE)
+    public CryptocurrencyListingResponseDto getCurrentBitcoinSVValue() {
+        return getValue(8);
+    }
+
+    @Cacheable(CacheConfig.TETHER_CACHE)
+    public CryptocurrencyListingResponseDto getCurrentTetherValue() {
+        return getValue(9);
+    }
+
+    @Cacheable(CacheConfig.TRON_CACHE)
+    public CryptocurrencyListingResponseDto getCurrentTRONValue() {
+        return getValue(10);
+    }
+
+    private CryptocurrencyListingResponseDto getValue(int start) {
         HttpHeaders headers = new HttpHeaders();
         addCommonHeaders(headers);
 
-        var builder = UriComponentsBuilder.fromHttpUrl(url)
-                                          .queryParam("start", 1)
-                                          .queryParam("limit", 1)
-                                          .queryParam("convert", "USD");
+        String URL = apiUrl + "/v1/cryptocurrency/listings/latest";
+        var builder = UriComponentsBuilder.fromHttpUrl(URL)
+                .queryParam("start", start)
+                .queryParam("limit", 1)
+                .queryParam("convert", "USD");
 
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
         ResponseEntity<CryptocurrencyListingResponseDto> exchange = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, CryptocurrencyListingResponseDto.class);

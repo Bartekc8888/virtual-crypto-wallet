@@ -6,20 +6,20 @@ services:
         build: .
         environment:
             DB_ADDRESS: postgresql-db
-            DB_USER: ${db_username}
-            DB_PASSWORD: ${db_password}
-            CRYPTO_API_KEY: ${crypto_api_key}
+            DB_USER: admin
+            DB_PASSWORD: admin
+            CRYPTO_API_KEY: 954574af-0604-4978-9506-c5eb8bfbf5ac
         depends_on:
             - postgresql-db
         ports:
-            - 8080:8080
+            - 8181:8181
     postgresql-db:
         image: postgres:11.3-alpine
         ports:
-            - 5432:5432
+            - 5433:5433
         environment:
-          POSTGRES_USER: ${db_username}
-          POSTGRES_PASSWORD: ${db_password}
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
         volumes:
             - /zzpj/postgresql:/var/lib/postgresql/data
             - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql

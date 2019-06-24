@@ -25,6 +25,6 @@ public class CryptoDataDto implements Serializable {
     private ZonedDateTime last_updated;
     private ZonedDateTime  date_added;
     private List<String> tags;
-    private String platform;
+    private Platform platform;
     private Map<String, CurrencyPriceStatisticsDto> quote;
 }
