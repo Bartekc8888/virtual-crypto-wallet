@@ -70,18 +70,16 @@ public class CryptoWalletDto {
         }
     }
 
-    public List<Wallet> getWallets(String username) {
-        List<Wallet> wallets = new ArrayList<>();
-        wallets.add(new Wallet(username,"bitcoin",this.bitcoin));
-        wallets.add(new Wallet(username,"etherum",this.etherum));
-        wallets.add(new Wallet(username,"xrp",this.xrp));
-        wallets.add(new Wallet(username,"litecoin",this.litecoin));
-        wallets.add(new Wallet(username,"bitcoincash",this.bitcoincash));
-        wallets.add(new Wallet(username,"eos",this.eos));
-        wallets.add(new Wallet(username,"binancecoin",this.binancecoin));
-        wallets.add(new Wallet(username,"bitcoinsv",this.bitcoinsv));
-        wallets.add(new Wallet(username,"tether",this.tether));
-        wallets.add(new Wallet(username,"tron",this.tron));
-        return wallets;
+    public void getWallets(List<Wallet> wallets) {
+          wallets.get(0).setAmount(this.bitcoin);
+          wallets.get(1).setAmount(this.etherum);
+          wallets.get(2).setAmount(this.xrp);
+          wallets.get(3).setAmount(this.litecoin);
+          wallets.get(4).setAmount(this.bitcoincash);
+          wallets.get(5).setAmount(this.eos);
+          wallets.get(6).setAmount(this.binancecoin);
+          wallets.get(7).setAmount(this.bitcoinsv);
+          wallets.get(8).setAmount(this.tether);
+          wallets.get(9).setAmount(this.tron);
     }
 }

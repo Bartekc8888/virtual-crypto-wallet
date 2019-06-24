@@ -16,14 +16,30 @@ import java.util.List;
 public class SecurityCryptoWalletService {
 
     private CryptoWalletRepository cryptoWalletRepository;
+    private List<Wallet> wallets;
 
     public CryptoWalletDto loadValues(){
-        List<Wallet> wallets = cryptoWalletRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        wallets = cryptoWalletRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        if(wallets.size()==0)
+            initWallets(SecurityContextHolder.getContext().getAuthentication().getName());
         return new CryptoWalletDto(wallets);
     }
 
+    private void initWallets(String username) {
+        wallets.add(new Wallet(username,"bitcoin",0.0));
+        wallets.add(new Wallet(username,"etherum",0.0));
+        wallets.add(new Wallet(username,"xrp",0.0));
+        wallets.add(new Wallet(username,"litecoin",0.0));
+        wallets.add(new Wallet(username,"bitcoincash",0.0));
+        wallets.add(new Wallet(username,"eos",0.0));
+        wallets.add(new Wallet(username,"binancecoin",0.0));
+        wallets.add(new Wallet(username,"bitcoinsv",0.0));
+        wallets.add(new Wallet(username,"tether",0.0));
+        wallets.add(new Wallet(username,"tron",0.0));
+    }
+
     public void saveValues(CryptoWalletDto cryptoWalletDto) {
-        List<Wallet> wallets = cryptoWalletDto.getWallets(SecurityContextHolder.getContext().getAuthentication().getName());
+        cryptoWalletDto.getWallets(wallets);
         cryptoWalletRepository.saveAll(wallets);
     }
 }

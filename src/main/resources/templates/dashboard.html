@@ -1,5 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"/>
     <title>Virtual Crypto Wallet</title>
@@ -7,83 +8,106 @@
 <body>
 <h1 th:text="#{dashboard.header}">Your crypto wallet</h1>
 <div>
-    <table style="width:100%">
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.bitcoin}">bitcoin</label></td>
-            <td><label class="label label-primary" th:text="*{bitcoinPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{bitcoin}" class="input input-primary" th:placeholder="#{cryptocurrency.current.bitcoin}"/></td>
-            <td><label class="label label-primary" th:text="*{bitcoinValue + '$'}"></label></td>
-        </tr>
+    <form class="form-group" name="saveForm" th:action="@{/save}" method="post">
+        <table style="width:100%">
+            <tr>
+                <td><label class="label label-primary" th:text="#{cryptocurrency.current.bitcoin}">bitcoin</label>
+                </td>
+                <td><label class="label label-primary" th:text="*{bitcoinPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{bitcoin}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.bitcoin}"/></td>
+                <td><label class="label label-primary" th:text="*{bitcoinValue + '$'}"></label></td>
+            </tr>
 
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.etherum}">etherum</label></td>
-            <td><label class="label label-primary" th:text="*{etherumPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{etherum}" class="input input-primary" th:placeholder="#{cryptocurrency.current.etherum}"/></td>
-            <td><label class="label label-primary" th:text="*{etherumValue + '$'}"></label></td>
-        </tr>
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.xrp}">xrp</label></td>
-            <td><label class="label label-primary" th:text="*{xrpPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{xrp}" class="input input-primary" th:placeholder="#{cryptocurrency.current.xrp}"/></td>
-            <td><label class="label label-primary" th:text="*{xrpValue + '$'}"></label></td>
-        </tr>
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.litecoin}">litecoin</label></td>
-            <td><label class="label label-primary" th:text="*{litecoinPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{litecoin}" class="input input-primary" th:placeholder="#{cryptocurrency.current.litecoin}"/></td>
-            <td><label class="label label-primary" th:text="*{litecoinValue + '$'}"></label></td>
-        </tr>
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.bitcoincash}">bitcoincash</label>
-            </td>
-            <td><label class="label label-primary" th:text="*{bitcoincashPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{bitcoincash}" class="input input-primary" th:placeholder="#{cryptocurrency.current.bitcoincash}"/></td>
-            <td><label class="label label-primary" th:text="*{bitcoincashValue + '$'}"></label></td>
-        </tr>
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.eos}">eos</label></td>
-            <td><label class="label label-primary" th:text="*{eosPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{eos}" class="input input-primary" th:placeholder="#{cryptocurrency.current.eos}"/></td>
-            <td><label class="label label-primary" th:text="*{eosValue + '$'}"></label></td>
-        </tr>
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.binancecoin}">binancecoin</label>
-            </td>
-            <td><label class="label label-primary" th:text="*{binancecoinPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{binancecoin}" class="input input-primary" th:placeholder="#{cryptocurrency.current.binancecoin}"/></td>
-            <td><label class="label label-primary" th:text="*{binancecoinValue + '$'}"></label></td>
-        </tr>
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.bitcoinsv}">bitcoinsv</label></td>
-            <td><label class="label label-primary" th:text="*{bitcoinsvpPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{bitcoinsv}" class="input input-primary" th:placeholder="#{cryptocurrency.current.bitcoinsv}"/></td>
-            <td><label class="label label-primary" th:text="*{bitcoinsvpValue + '$'}"></label></td>
-        </tr>
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.tether}">tether</label></td>
-            <td><label class="label label-primary" th:text="*{tetherPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{tether}" class="input input-primary" th:placeholder="#{cryptocurrency.current.tether}"/></td>
-            <td><label class="label label-primary" th:text="*{tetherValue + '$'}"></label></td>
-        </tr>
-        <tr>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.current.tron}">tron</label></td>
-            <td><label class="label label-primary" th:text="*{tronPrice + '$'}"></label></td>
-            <td><input th:object="${crypto}" th:field="*{tron}" class="input input-primary" th:placeholder="#{cryptocurrency.current.tron}"/></td>
-            <td><label class="label label-primary" th:text="*{tronValue + '$'}"></label></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td><label class="label label-primary" th:text="#{cryptocurrency.sum}">sum</label></td>
-            <td><label class="label label-primary" th:text="*{sum + '$'}"></label></td>
-        </tr>
-    </table>
+            <tr>
+                <td><label class="label label-primary" th:text="#{cryptocurrency.current.etherum}">etherum</label>
+                </td>
+                <td><label class="label label-primary" th:text="*{etherumPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{etherum}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.etherum}"/></td>
+                <td><label class="label label-primary" th:text="*{etherumValue + '$'}"></label></td>
+            </tr>
+            <tr>
+                <td><label class="label label-primary" th:text="#{cryptocurrency.current.xrp}">xrp</label></td>
+                <td><label class="label label-primary" th:text="*{xrpPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{xrp}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.xrp}"/></td>
+                <td><label class="label label-primary" th:text="*{xrpValue + '$'}"></label></td>
+            </tr>
+            <tr>
+                <td><label class="label label-primary" th:text="#{cryptocurrency.current.litecoin}">litecoin</label>
+                </td>
+                <td><label class="label label-primary" th:text="*{litecoinPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{litecoin}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.litecoin}"/></td>
+                <td><label class="label label-primary" th:text="*{litecoinValue + '$'}"></label></td>
+            </tr>
+            <tr>
+                <td><label class="label label-primary"
+                           th:text="#{cryptocurrency.current.bitcoincash}">bitcoincash</label>
+                </td>
+                <td><label class="label label-primary" th:text="*{bitcoincashPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{bitcoincash}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.bitcoincash}"/></td>
+                <td><label class="label label-primary" th:text="*{bitcoincashValue + '$'}"></label></td>
+            </tr>
+            <tr>
+                <td><label class="label label-primary" th:text="#{cryptocurrency.current.eos}">eos</label></td>
+                <td><label class="label label-primary" th:text="*{eosPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{eos}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.eos}"/></td>
+                <td><label class="label label-primary" th:text="*{eosValue + '$'}"></label></td>
+            </tr>
+            <tr>
+                <td><label class="label label-primary"
+                           th:text="#{cryptocurrency.current.binancecoin}">binancecoin</label>
+                </td>
+                <td><label class="label label-primary" th:text="*{binancecoinPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{binancecoin}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.binancecoin}"/></td>
+                <td><label class="label label-primary" th:text="*{binancecoinValue + '$'}"></label></td>
+            </tr>
+            <tr>
+                <td><label class="label label-primary"
+                           th:text="#{cryptocurrency.current.bitcoinsv}">bitcoinsv</label>
+                </td>
+                <td><label class="label label-primary" th:text="*{bitcoinsvpPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{bitcoinsv}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.bitcoinsv}"/></td>
+                <td><label class="label label-primary" th:text="*{bitcoinsvpValue + '$'}"></label></td>
+            </tr>
+            <tr>
+                <td><label class="label label-primary" th:text="#{cryptocurrency.current.tether}">tether</label>
+                </td>
+                <td><label class="label label-primary" th:text="*{tetherPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{tether}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.tether}"/></td>
+                <td><label class="label label-primary" th:text="*{tetherValue + '$'}"></label></td>
+            </tr>
+            <tr>
+                <td><label class="label label-primary" th:text="#{cryptocurrency.current.tron}">tron</label></td>
+                <td><label class="label label-primary" th:text="*{tronPrice + '$'}"></label></td>
+                <td><input th:object="${crypto}" th:field="*{tron}" class="input input-primary"
+                           th:placeholder="#{cryptocurrency.current.tron}"/></td>
+                <td><label class="label label-primary" th:text="*{tronValue + '$'}"></label></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><label class="label label-primary" th:text="#{cryptocurrency.sum}">sum</label></td>
+                <td><label class="label label-primary" th:text="*{sum + '$'}"></label></td>
+            </tr>
+        </table>
+        <button class="btn btn-lg btn-primary btn-block col-sm-offset-2 col-sm-4" type="submit"
+                th:object="${crypto}" th:text="#{cryptocurrency.save}">save
+        </button>
+    </form>
 </div>
-<form class="form-group" name="saveForm" th:action="@{/save}" method="post">
-    <button class="btn btn-lg btn-primary btn-block col-sm-offset-2 col-sm-4" type="submit"
-            th:text="#{cryptocurrency.save}">save
-    </button>
-</form>
+<!--<form class="form-group" name="saveForm" th:action="@{/save}" method="post">-->
+<!--    <button class="btn btn-lg btn-primary btn-block col-sm-offset-2 col-sm-4" type="submit"-->
+<!--            th:text="#{cryptocurrency.save}">save-->
+<!--    </button>-->
+<!--</form>-->
 <!--<a class="btn btn-lg btn-primary btn-block col-sm-offset-2 col-sm-4" th:="@{/save}" th:text="#{cryptocurrency.save}"></a>-->
 <form class="form-group" name="logoutForm" th:action="@{/logout}" method="post">
     <button class="btn btn-lg btn-primary btn-block col-sm-offset-2 col-sm-4" type="submit"

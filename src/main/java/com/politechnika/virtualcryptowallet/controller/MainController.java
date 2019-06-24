@@ -13,9 +13,7 @@ import lombok.NoArgsConstructor;
 import org.apache.catalina.valves.rewrite.Substitution;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -55,9 +53,13 @@ public class MainController {
         return "register";
     }
 
-    @RequestMapping(value="/save")
-    public String save(){
-        //cryptoWalletService.saveValues(cryptoWalletDto);
+    @PostMapping("/save")
+    public String save(Model model, @ModelAttribute("crypto") @Valid CryptoWalletDto cryptoWalletDto){
+        cryptoWalletService.saveValues(cryptoWalletDto);
+        model.addAllAttributes(priceValues);
+        model.addAttribute("crypto",cryptoWalletDto);
+        calculateValueOfCryptocurrencies(cryptoWalletDto);
+        model.addAllAttributes(cryptocurrenciesValues);
         return "dashboard";
     }
 
