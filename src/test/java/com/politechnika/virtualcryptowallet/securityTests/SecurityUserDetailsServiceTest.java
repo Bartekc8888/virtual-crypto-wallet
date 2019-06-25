@@ -6,6 +6,7 @@ import com.politechnika.virtualcryptowallet.model.UserRole;
 import com.politechnika.virtualcryptowallet.model.UserRoleType;
 import com.politechnika.virtualcryptowallet.repository.UserRepository;
 import com.politechnika.virtualcryptowallet.repository.UserRoleRepository;
+import com.politechnika.virtualcryptowallet.security.SecurityCryptoWalletService;
 import com.politechnika.virtualcryptowallet.security.SecurityUserDetails;
 import com.politechnika.virtualcryptowallet.security.SecurityUserDetailsService;
 import org.junit.Assert;
@@ -32,6 +33,9 @@ public class SecurityUserDetailsServiceTest {
 
     @MockBean
     UserRoleRepository userRoleRepository;
+
+    @Mock
+    SecurityCryptoWalletService securityCryptoWalletService;
 
     @MockBean
     PasswordEncoder passwordEncoder;

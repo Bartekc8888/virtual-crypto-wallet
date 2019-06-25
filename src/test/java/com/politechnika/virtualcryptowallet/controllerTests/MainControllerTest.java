@@ -5,9 +5,14 @@ import com.politechnika.virtualcryptowallet.cryptomarket.CryptoApiRequestService
 import com.politechnika.virtualcryptowallet.cryptomarket.dtos.CryptoDataDto;
 import com.politechnika.virtualcryptowallet.cryptomarket.dtos.CryptocurrencyListingResponseDto;
 import com.politechnika.virtualcryptowallet.cryptomarket.dtos.CurrencyPriceStatisticsDto;
+import com.politechnika.virtualcryptowallet.dto.CryptoWalletDto;
+import com.politechnika.virtualcryptowallet.security.SecurityCryptoWalletService;
+import org.jboss.jandex.Main;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -40,6 +45,12 @@ public class MainControllerTest {
     @MockBean
     CryptoApiRequestService cryptoApiRequestService;
 
+    @MockBean
+    SecurityCryptoWalletService securityCryptoWalletService;
+
+    @Mock
+    MainController mainController;
+
     @Before
     public void setUp() {
         mvc = MockMvcBuilders.webAppContextSetup(wAC).build();
@@ -48,7 +59,7 @@ public class MainControllerTest {
     @Test
     public void getRootTest() throws Exception {
         CurrencyPriceStatisticsDto currencyPriceStatisticsDto = new CurrencyPriceStatisticsDto();
-        currencyPriceStatisticsDto.setPrice(55L);
+        currencyPriceStatisticsDto.setPrice(55d);
 
         Map<String, CurrencyPriceStatisticsDto> map = new HashMap<>();
         map.put("USD", currencyPriceStatisticsDto);
@@ -61,6 +72,13 @@ public class MainControllerTest {
 
         CryptocurrencyListingResponseDto currentBitcoinValue = new CryptocurrencyListingResponseDto();
         currentBitcoinValue.setData(list);
+
+        CryptoWalletDto cryptoWalletDto = new CryptoWalletDto();
+
+        Mockito.when(securityCryptoWalletService.loadValues()).thenReturn(cryptoWalletDto);
+
+        Mockito.when(mainController.getValue(Mockito.any())).thenReturn(5d);
+
 
         Mockito.when(cryptoApiRequestService.getCurrentBitcoinValue()).thenReturn(currentBitcoinValue);
         mvc.perform(get("/")).andExpect(status().isOk());
