@@ -2,9 +2,7 @@ package com.politechnika.virtualcryptowallet.model;
 
 import javax.persistence.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "auth_users")
@@ -21,4 +19,9 @@ public class User {
     private String password;
 
     private boolean enabled;
+
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
 }
