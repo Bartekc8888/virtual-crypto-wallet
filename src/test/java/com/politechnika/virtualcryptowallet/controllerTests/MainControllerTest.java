@@ -5,6 +5,7 @@ import com.politechnika.virtualcryptowallet.cryptomarket.CryptoApiRequestService
 import com.politechnika.virtualcryptowallet.cryptomarket.dtos.CryptoDataDto;
 import com.politechnika.virtualcryptowallet.cryptomarket.dtos.CryptocurrencyListingResponseDto;
 import com.politechnika.virtualcryptowallet.cryptomarket.dtos.CurrencyPriceStatisticsDto;
+import com.politechnika.virtualcryptowallet.cryptomarket.dtos.ResponseStatusDto;
 import com.politechnika.virtualcryptowallet.dto.CryptoWalletDto;
 import com.politechnika.virtualcryptowallet.security.SecurityCryptoWalletService;
 import org.jboss.jandex.Main;
@@ -78,7 +79,7 @@ public class MainControllerTest {
         Mockito.when(securityCryptoWalletService.loadValues()).thenReturn(cryptoWalletDto);
 
         Mockito.when(mainController.getValue(Mockito.any())).thenReturn(5d);
-
+        mockCryptoApiService();
 
         Mockito.when(cryptoApiRequestService.getCurrentBitcoinValue()).thenReturn(currentBitcoinValue);
         mvc.perform(get("/")).andExpect(status().isOk());
@@ -92,5 +93,28 @@ public class MainControllerTest {
     @Test
     public void getRegister() throws Exception {
         mvc.perform(get("/register")).andExpect(status().isOk());
+    }
+
+    private void mockCryptoApiService() {
+        Mockito.when(cryptoApiRequestService.getCurrentBitcoinValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
+        Mockito.when(cryptoApiRequestService.getCurrentEtherumValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
+        Mockito.when(cryptoApiRequestService.getCurrentXRPValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
+        Mockito.when(cryptoApiRequestService.getCurrentLitecoinValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
+        Mockito.when(cryptoApiRequestService.getCurrentBitcoinCashValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
+        Mockito.when(cryptoApiRequestService.getCurrentEOSValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
+        Mockito.when(cryptoApiRequestService.getCurrentBinanceCoinValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
+        Mockito.when(cryptoApiRequestService.getCurrentBitcoinSVValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
+        Mockito.when(cryptoApiRequestService.getCurrentTetherValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
+        Mockito.when(cryptoApiRequestService.getCurrentTRONValue())
+               .thenReturn(new CryptocurrencyListingResponseDto(new ArrayList<>(), new ResponseStatusDto()));
     }
 }

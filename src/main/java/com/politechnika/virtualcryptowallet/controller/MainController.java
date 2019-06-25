@@ -98,7 +98,7 @@ public class MainController {
         return sum;
     }
 
-    private Double getValue(CryptocurrencyListingResponseDto value) {
+    public Double getValue(CryptocurrencyListingResponseDto value) {
         Double currentPrice = value.getData().stream()
                 .findAny()
                 .map(cryptoDataDto -> cryptoDataDto.getQuote().get(currency))
